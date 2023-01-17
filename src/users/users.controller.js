@@ -54,8 +54,9 @@ export const userGetByIDRest = async (req, res) => {
 
 export const userUpdateRest = async (req, res) => {
   const { id } = req.query;
+  const { name, email, password, phone } = req.body;
 
-  if (!id) {
+  if (!(id && name && password && email && phone)) {
     return res.status(400).json({
       meta: {
         code: 400,
@@ -65,13 +66,15 @@ export const userUpdateRest = async (req, res) => {
     });
   }
 
-  const respModel = await updateUser(id);
+  const respModel = await updateUser(id, name, email, password, phone);
   return res.status(200).json({
     meta: {
       code: 200,
       message: "Success update user",
     },
-    data: respModel,
+    data: {
+      id: respModel,
+    },
   });
 };
 
