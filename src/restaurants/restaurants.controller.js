@@ -3,7 +3,7 @@ import {
   deleteRestaurant,
   getRestaurantbyId,
   updateRestaurant,
-} from "./restaurant.model.js";
+} from "./restaurants.model.js";
 
 export const restaurantCreateRest = async (req, res) => {
   const {

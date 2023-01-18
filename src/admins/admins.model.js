@@ -49,7 +49,7 @@ export const createAdmin = async (nm, em, pw, ph) => {
   return create.id;
 };
 
-export const getAdminsbyId = async (id) => {
+export const getAdminbyId = async (id) => {
   const allAdmin = await Admins.findOne({
     where: {
       id: id,

@@ -6,7 +6,6 @@ const Restaurants = newSeq.define(
   {
     resto_name: {
       type: DataTypes.STRING,
-      allowNull: false,
       unique: true,
     },
     location: {
@@ -19,10 +18,10 @@ const Restaurants = newSeq.define(
       type: DataTypes.STRING,
     },
     table_qouta: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER(20),
     },
     booking_fee: {
-      type: DataTypes.STRING(20),
+      type: DataTypes.INTEGER(20),
     },
     latitude: {
       type: DataTypes.STRING,
@@ -42,6 +41,13 @@ const Restaurants = newSeq.define(
     },
     resto_image_url: {
       type: DataTypes.STRING,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "users", // 'users' refers to table name
+        key: "id", // 'id' refers to column name in users table
+      },
     },
   },
   {
@@ -102,7 +108,7 @@ export const getRestaurantbyId = async (id) => {
 export const getRestaurantbyName = async (rm) => {
   const allRestaurant = await Restaurants.findOne({
     where: {
-      name: rm,
+      resto_name: rm,
     },
   });
   return allRestaurant;
@@ -116,7 +122,7 @@ export const deleteRestaurant = (id) => {
   });
 };
 
-export const updateRestaurants = async (data, id) => {
+export const updateRestaurant = async (data, id) => {
   await Restaurants.update(data, {
     where: {
       id: id,

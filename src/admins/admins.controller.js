@@ -5,7 +5,7 @@ import {
   updateAdmin,
 } from "./admins.model.js";
 
-export const adminsCreateRest = async (req, res) => {
+export const adminCreateRest = async (req, res) => {
   const { name, email, password, phone } = req.body;
 
   if (!(name && password && email)) {

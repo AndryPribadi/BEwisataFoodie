@@ -22,4 +22,46 @@ newSeq
     console.error("Unable to create table : ", error);
   });
 
+export const createResto_image = async (ri) => {
+  const create = await Resto_images.create({
+    resto_image_url: ri,
+  });
+  console.log(ri, "'s id : ", create.id);
+  return create.id;
+};
+
+export const getResto_imagebyId = async (id) => {
+  const allResto_image = await Resto_images.findOne({
+    where: {
+      id: id,
+    },
+  });
+  return allResto_image;
+};
+
+export const getResto_imagebyName = async (fy) => {
+  const allResto_image = await Resto_images.findOne({
+    where: {
+      resto_image_url: ri,
+    },
+  });
+  return allResto_image;
+};
+
+export const deleteResto_image = (id) => {
+  Resto_images.destroy({
+    where: {
+      id: id,
+    },
+  });
+};
+
+export const updateResto_image = async (data, id) => {
+  await Resto_images.update(data, {
+    where: {
+      id: id,
+    },
+  });
+};
+
 export default Resto_images;

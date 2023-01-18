@@ -4,12 +4,11 @@ import userRoute from "./users/users.routes.js";
 import authRoute from "./auth/auth.routes.js";
 import restaurantRoute from "./restaurants/restaurants.routes.js";
 import adminRoute from "./admins/admins.routes.js";
-import Bookings from "./bookings/bookings.model.js";
-import Comments from "./comments/comments.model.js";
-import Facilities from "./facilities/facilities.model.js";
-import Favourites from "./favourites/favourites.model.js";
-import Resto_images from "./resto_images/resto_images.model.js";
-
+import bookingRoute from "./bookings/bookings.routes.js";
+import commentRoute from "./comments/comments.routes.js";
+import facilitieRoute from "./facilities/facilities.routes.js";
+import favouritRoute from "./favourites/favourites.routes.js";
+import resto_imageRoute from "./resto_images/resto_images.routes.js";
 const app = express();
 
 app.use(express.json());
@@ -19,11 +18,11 @@ app.use("/api/v1", userRoute);
 app.use("/api/v1", authRoute);
 app.use("/api/v1", adminRoute);
 app.use("/api/v1", restaurantRoute);
-Bookings;
-Comments;
-Facilities;
-Favourites;
-Resto_images;
+app.use("/api/v1", bookingRoute);
+app.use("/api/v1", commentRoute);
+app.use("/api/v1", facilitieRoute);
+app.use("/api/v1", resto_imageRoute);
+app.use("/api/v1", favouritRoute);
 
 // start server
 app.listen(process.env.API_PORT, () => {

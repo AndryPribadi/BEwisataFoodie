@@ -1,14 +1,14 @@
 import {
-  createComment,
-  deleteComment,
-  getCommentbyId,
-  updateComment,
-} from "./comments.model.js";
+  createFacilitie,
+  deleteFacilitie,
+  getFacilitiebyId,
+  updateFacilitie,
+} from "./facilities.model.js";
 
-export const commentCreateRest = async (req, res) => {
-  const { comments, rating } = req.body;
+export const facilitieCreateRest = async (req, res) => {
+  const { facility } = req.body;
 
-  if (!(comments && rating)) {
+  if (!facility) {
     return res.status(400).json({
       meta: {
         code: 400,
@@ -17,11 +17,11 @@ export const commentCreateRest = async (req, res) => {
       data: {},
     });
   }
-  const respModel = await createComment(comments, rating);
+  const respModel = await createFacilitie(facility);
   return res.status(200).json({
     meta: {
       code: 200,
-      message: "Success add comment",
+      message: "Success add facilitie",
     },
     data: {
       id: respModel,
@@ -29,7 +29,7 @@ export const commentCreateRest = async (req, res) => {
   });
 };
 
-export const commentGetByIDRest = async (req, res) => {
+export const facilitieGetByIDRest = async (req, res) => {
   const { id } = req.query;
 
   if (!id) {
@@ -42,21 +42,21 @@ export const commentGetByIDRest = async (req, res) => {
     });
   }
 
-  const respModel = await getCommentbyId(id);
+  const respModel = await getFacilitiebyId(id);
   return res.status(200).json({
     meta: {
       code: 200,
-      message: "Success get comment",
+      message: "Success get facilitie",
     },
     data: respModel,
   });
 };
 
-export const commentUpdateRest = async (req, res) => {
+export const facilitieUpdateRest = async (req, res) => {
   const { id } = req.query;
-  const { comments, rating } = req.body;
+  const { facility } = req.body;
 
-  if (!(id && comments && rating)) {
+  if (!(id && facility)) {
     return res.status(400).json({
       meta: {
         code: 400,
@@ -66,11 +66,11 @@ export const commentUpdateRest = async (req, res) => {
     });
   }
 
-  const respModel = await updateComment(comments, rating);
+  const respModel = await updateFacilitie(facility);
   return res.status(200).json({
     meta: {
       code: 200,
-      message: "Success update comment",
+      message: "Success update facilitie",
     },
     data: {
       id: respModel,
@@ -78,13 +78,13 @@ export const commentUpdateRest = async (req, res) => {
   });
 };
 
-export const commentDeleteRest = async (req, res) => {
+export const facilitieDeleteRest = async (req, res) => {
   const { id } = req.query;
-  const respModel = await deleteComment(id);
+  const respModel = await deleteFacilitie(id);
   return res.status(200).json({
     meta: {
       code: 200,
-      message: "Success delete comment",
+      message: "Success delete facilitie",
     },
     data: respModel,
   });
