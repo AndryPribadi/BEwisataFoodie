@@ -66,7 +66,7 @@ export const userUpdateRest = async (req, res) => {
     });
   }
 
-  const respModel = await updateUser(id, name, email, password, phone);
+  const respModel = await updateUser({ name, email, password, phone }, id);
   return res.status(200).json({
     meta: {
       code: 200,
@@ -80,6 +80,14 @@ export const userUpdateRest = async (req, res) => {
 
 export const userDeleteRest = async (req, res) => {
   const { id } = req.query;
+  if (!id) {
+    return res.status(400).json({
+      meta: {
+        code: 400,
+        error: "order doesn't exist",
+      },
+    });
+  }
   const respModel = await deleteUser(id);
   return res.status(200).json({
     meta: {

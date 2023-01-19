@@ -11,7 +11,7 @@ const router = Router();
 
 router.post("/users", verifyToken, userCreateRest);
 router.get("/users", verifyToken, userGetByIDRest);
-router.put("/users/:id", userUpdateRest);
-router.delete("/user/:id", userDeleteRest);
+router.put("/users", userUpdateRest);
+router.delete("/users", userDeleteRest);
 
 export default router;
