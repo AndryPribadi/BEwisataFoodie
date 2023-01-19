@@ -21,8 +21,7 @@ const Users = newSeq.define(
       type: DataTypes.TEXT,
     },
     role: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false,
+      type: DataTypes.STRING,
     },
     phone: {
       type: DataTypes.STRING(20),

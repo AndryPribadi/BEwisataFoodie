@@ -7,6 +7,13 @@ const Facilities = newSeq.define(
     facility: {
       type: DataTypes.STRING,
     },
+    restaurant_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "restaurants", // 'users' refers to table name
+        key: "id", // 'id' refers to column name in users table
+      },
+    },
   },
   {
     paranoid: true, //soft-delete

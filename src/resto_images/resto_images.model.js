@@ -4,8 +4,15 @@ import { newSeq } from "../configs/database.js";
 const Resto_images = newSeq.define(
   "resto_images",
   {
-    facility: {
+    resto_image_url: {
       type: DataTypes.STRING,
+    },
+    restaurant_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "restaurants", // 'users' refers to table name
+        key: "id", // 'id' refers to column name in users table
+      },
     },
   },
   {

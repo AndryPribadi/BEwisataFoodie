@@ -3,7 +3,22 @@ import { newSeq } from "../configs/database.js";
 
 const Favourites = newSeq.define(
   "favourites",
-  {},
+  {
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "users", // 'users' refers to table name
+        key: "id", // 'id' refers to column name in users table
+      },
+    },
+    restaurant_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "restaurants", // 'users' refers to table name
+        key: "id", // 'id' refers to column name in users table
+      },
+    },
+  },
   {
     paranoid: true, //soft-delete
   }

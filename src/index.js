@@ -3,7 +3,6 @@ import express from "express";
 import userRoute from "./users/users.routes.js";
 import authRoute from "./auth/auth.routes.js";
 import restaurantRoute from "./restaurants/restaurants.routes.js";
-import adminRoute from "./admins/admins.routes.js";
 import bookingRoute from "./bookings/bookings.routes.js";
 import commentRoute from "./comments/comments.routes.js";
 import facilitieRoute from "./facilities/facilities.routes.js";
@@ -16,7 +15,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1", userRoute);
 app.use("/api/v1", authRoute);
-app.use("/api/v1", adminRoute);
 app.use("/api/v1", restaurantRoute);
 app.use("/api/v1", bookingRoute);
 app.use("/api/v1", commentRoute);
