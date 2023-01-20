@@ -67,19 +67,21 @@ export const getCommentbyName = async (nm) => {
 };
 
 export const deleteComment = (id) => {
-  Comments.destroy({
+  const allComment = Comments.destroy({
     where: {
       id: id,
     },
   });
+  return allComment;
 };
 
 export const updateComment = async (data, id) => {
-  await Comments.update(data, {
+  const allComment = await Comments.update(data, {
     where: {
       id: id,
     },
   });
+  return allComment;
 };
 
 export default Comments;

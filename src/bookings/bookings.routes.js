@@ -10,7 +10,7 @@ const router = Router();
 
 router.post("/bookings", bookingCreateRest);
 router.get("/bookings", bookingGetByIDRest);
-router.put("/bookings/:id", bookingUpdateRest);
-router.delete("/bookings/:id", bookingDeleteRest);
+router.put("/bookings", bookingUpdateRest);
+router.delete("/bookings", bookingDeleteRest);
 
 export default router;

@@ -115,19 +115,21 @@ export const getRestaurantbyName = async (rm) => {
 };
 
 export const deleteRestaurant = (id) => {
-  Restaurants.destroy({
+  const allRestaurant = Restaurants.destroy({
     where: {
       id: id,
     },
   });
+  return allRestaurant;
 };
 
 export const updateRestaurant = async (data, id) => {
-  await Restaurants.update(data, {
+  const allRestaurant = await Restaurants.update(data, {
     where: {
       id: id,
     },
   });
+  return allRestaurant;
 };
 
 export default Restaurants;

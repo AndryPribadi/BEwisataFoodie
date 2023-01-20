@@ -10,7 +10,7 @@ const router = Router();
 
 router.post("/comments", commentCreateRest);
 router.get("/comments", commentGetByIDRest);
-router.put("/comments/:id", commentUpdateRest);
-router.delete("/comments/:id", commentDeleteRest);
+router.put("/comments", commentUpdateRest);
+router.delete("/comments", commentDeleteRest);
 
 export default router;

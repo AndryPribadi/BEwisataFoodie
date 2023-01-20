@@ -6,27 +6,9 @@ import {
 } from "./bookings.model.js";
 
 export const bookingCreateRest = async (req, res) => {
-  const {
-    transection_id,
-    order_id,
-    table_qouta,
-    booking_fee,
-    payments_status,
-    booking_status,
-    date,
-  } = req.body;
+  const { transection_id, order_id, table_qouta, booking_fee } = req.body;
 
-  if (
-    !(
-      transection_id &&
-      order_id &&
-      table_qouta &&
-      booking_fee &&
-      payments_status &&
-      booking_status &&
-      date
-    )
-  ) {
+  if (!(transection_id && order_id && table_qouta && booking_fee)) {
     return res.status(400).json({
       meta: {
         code: 400,
@@ -39,11 +21,9 @@ export const bookingCreateRest = async (req, res) => {
     transection_id,
     order_id,
     table_qouta,
-    booking_fee,
-    payments_status,
-    booking_status,
-    date
+    booking_fee
   );
+
   return res.status(200).json({
     meta: {
       code: 200,
@@ -80,28 +60,9 @@ export const bookingGetByIDRest = async (req, res) => {
 
 export const bookingUpdateRest = async (req, res) => {
   const { id } = req.query;
-  const {
-    transection_id,
-    order_id,
-    table_qouta,
-    booking_fee,
-    payments_status,
-    booking_status,
-    date,
-  } = req.body;
+  const { transection_id, order_id, table_qouta, booking_fee } = req.body;
 
-  if (
-    !(
-      id &&
-      transection_id &&
-      order_id &&
-      table_qouta &&
-      booking_fee &&
-      payments_status &&
-      booking_status &&
-      date
-    )
-  ) {
+  if (!(id && transection_id && order_id && table_qouta && booking_fee)) {
     return res.status(400).json({
       meta: {
         code: 400,
@@ -112,13 +73,13 @@ export const bookingUpdateRest = async (req, res) => {
   }
 
   const respModel = await updateBooking(
-    transection_id,
-    order_id,
-    table_qouta,
-    booking_fee,
-    payments_status,
-    booking_status,
-    date
+    {
+      transection_id,
+      order_id,
+      table_qouta,
+      booking_fee,
+    },
+    id
   );
   return res.status(200).json({
     meta: {
@@ -133,6 +94,14 @@ export const bookingUpdateRest = async (req, res) => {
 
 export const bookingDeleteRest = async (req, res) => {
   const { id } = req.query;
+  if (!id) {
+    return res.status(400).json({
+      meta: {
+        code: 400,
+        error: "comment doesn't exist",
+      },
+    });
+  }
   const respModel = await deleteBooking(id);
   return res.status(200).json({
     meta: {

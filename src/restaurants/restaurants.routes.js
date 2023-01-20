@@ -11,7 +11,7 @@ const router = Router();
 
 router.post("/restaurants", verifyToken, restaurantCreateRest);
 router.get("/restaurants", verifyToken, restaurantGetByIDRest);
-router.put("/restaurants/:id", restaurantUpdateRest);
-router.delete("/restaurants/:id", restaurantDeleteRest);
+router.put("/restaurants", restaurantUpdateRest);
+router.delete("/restaurants", restaurantDeleteRest);
 
 export default router;

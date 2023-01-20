@@ -6,29 +6,9 @@ import {
 } from "./restaurants.model.js";
 
 export const restaurantCreateRest = async (req, res) => {
-  const {
-    resto_name,
-    location,
-    category,
-    table_qouta,
-    booking_fee,
-    latitude,
-    longitude,
-    status,
-  } = req.body;
+  const { resto_name, location, category, table_qouta, booking_fee } = req.body;
 
-  if (
-    !(
-      resto_name &&
-      location &&
-      category &&
-      table_qouta &&
-      booking_fee &&
-      latitude &&
-      longitude &&
-      status
-    )
-  ) {
+  if (!(resto_name && location && category && table_qouta && booking_fee)) {
     return res.status(400).json({
       meta: {
         code: 400,
@@ -42,10 +22,7 @@ export const restaurantCreateRest = async (req, res) => {
     location,
     category,
     table_qouta,
-    booking_fee,
-    latitude,
-    longitude,
-    status
+    booking_fee
   );
   return res.status(200).json({
     meta: {
@@ -83,29 +60,10 @@ export const restaurantGetByIDRest = async (req, res) => {
 
 export const restaurantUpdateRest = async (req, res) => {
   const { id } = req.query;
-  const {
-    resto_name,
-    location,
-    category,
-    table_qouta,
-    booking_fee,
-    latitude,
-    longitude,
-    status,
-  } = req.body;
+  const { resto_name, location, category, table_qouta, booking_fee } = req.body;
 
   if (
-    !(
-      id &&
-      resto_name &&
-      location &&
-      category &&
-      table_qouta &&
-      booking_fee &&
-      latitude &&
-      longitude &&
-      status
-    )
+    !(id && resto_name && location && category && table_qouta && booking_fee)
   ) {
     return res.status(400).json({
       meta: {
@@ -117,14 +75,14 @@ export const restaurantUpdateRest = async (req, res) => {
   }
 
   const respModel = await updateRestaurant(
-    resto_name,
-    location,
-    category,
-    table_qouta,
-    booking_fee,
-    latitude,
-    longitude,
-    status
+    {
+      resto_name,
+      location,
+      category,
+      table_qouta,
+      booking_fee,
+    },
+    id
   );
   return res.status(200).json({
     meta: {
@@ -139,6 +97,14 @@ export const restaurantUpdateRest = async (req, res) => {
 
 export const restaurantDeleteRest = async (req, res) => {
   const { id } = req.query;
+  if (!id) {
+    return res.status(400).json({
+      meta: {
+        code: 400,
+        error: "restaurant doesn't exist",
+      },
+    });
+  }
   const respModel = await deleteRestaurant(id);
   return res.status(200).json({
     meta: {

@@ -5,10 +5,10 @@ const Bookings = newSeq.define(
   "bookings",
   {
     transection_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER(20),
     },
     order_id: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER(20),
     },
     table_qouta: {
       type: DataTypes.INTEGER(20),
@@ -92,19 +92,21 @@ export const getBookingbyName = async (ti) => {
 };
 
 export const deleteBooking = (id) => {
-  Bookings.destroy({
+  const allBooking = Bookings.destroy({
     where: {
       id: id,
     },
   });
+  return allBooking;
 };
 
 export const updateBooking = async (data, id) => {
-  await Bookings.update(data, {
+  const allBooking = await Bookings.update(data, {
     where: {
       id: id,
     },
   });
+  return allBooking;
 };
 
 export default Bookings;

@@ -84,7 +84,7 @@ export const userDeleteRest = async (req, res) => {
     return res.status(400).json({
       meta: {
         code: 400,
-        error: "order doesn't exist",
+        error: "user doesn't exist",
       },
     });
   }

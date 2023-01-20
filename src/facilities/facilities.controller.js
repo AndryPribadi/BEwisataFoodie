@@ -66,7 +66,7 @@ export const facilitieUpdateRest = async (req, res) => {
     });
   }
 
-  const respModel = await updateFacilitie(facility);
+  const respModel = await updateFacilitie({ facility }, id);
   return res.status(200).json({
     meta: {
       code: 200,
@@ -80,6 +80,14 @@ export const facilitieUpdateRest = async (req, res) => {
 
 export const facilitieDeleteRest = async (req, res) => {
   const { id } = req.query;
+  if (!id) {
+    return res.status(400).json({
+      meta: {
+        code: 400,
+        error: "facility doesn't exist",
+      },
+    });
+  }
   const respModel = await deleteFacilitie(id);
   return res.status(200).json({
     meta: {

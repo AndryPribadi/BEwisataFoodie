@@ -66,7 +66,7 @@ export const commentUpdateRest = async (req, res) => {
     });
   }
 
-  const respModel = await updateComment(comments, rating);
+  const respModel = await updateComment({ comments, rating }, id);
   return res.status(200).json({
     meta: {
       code: 200,
@@ -80,6 +80,14 @@ export const commentUpdateRest = async (req, res) => {
 
 export const commentDeleteRest = async (req, res) => {
   const { id } = req.query;
+  if (!id) {
+    return res.status(400).json({
+      meta: {
+        code: 400,
+        error: "comment doesn't exist",
+      },
+    });
+  }
   const respModel = await deleteComment(id);
   return res.status(200).json({
     meta: {

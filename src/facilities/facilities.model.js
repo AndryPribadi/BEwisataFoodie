@@ -56,19 +56,21 @@ export const getFacilitiebyName = async (fy) => {
 };
 
 export const deleteFacilitie = (id) => {
-  Facilities.destroy({
+  const allFacilitie = Facilities.destroy({
     where: {
       id: id,
     },
   });
+  return allFacilitie;
 };
 
 export const updateFacilitie = async (data, id) => {
-  await Facilities.update(data, {
+  const allFacilitie = await Facilities.update(data, {
     where: {
       id: id,
     },
   });
+  return allFacilitie;
 };
 
 export default Facilities;

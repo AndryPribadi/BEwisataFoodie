@@ -10,7 +10,7 @@ const router = Router();
 
 router.post("/facilities", facilitieCreateRest);
 router.get("/facilities", facilitieGetByIDRest);
-router.put("/facilities/:id", facilitieUpdateRest);
-router.delete("/facilities/:id", facilitieDeleteRest);
+router.put("/facilities", facilitieUpdateRest);
+router.delete("/facilities", facilitieDeleteRest);
 
 export default router;
